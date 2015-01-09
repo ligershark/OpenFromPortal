@@ -13,13 +13,14 @@ namespace Company.OpenFromPortal
 {
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", Version, IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [Guid(GuidList.guidOpenFromPortalPkgString)]
     public sealed class OpenFromPortalPackage : ExtensionPointPackage
     {
+        public const string Version = "1.0.3";
         private static DTE2 _dte;
 
         protected override void Initialize()

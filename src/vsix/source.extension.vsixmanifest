@@ -4,6 +4,7 @@
     <Identity Id="4156516b-f6e6-40f2-aecb-ff99cded5f8a" Version="1.1" Language="en-US" Publisher="LigerShark" />
     <DisplayName>Open From Azure Websites</DisplayName>
     <Description>Open any Azure hosted web application as a Website Project.</Description>
+    <MoreInfo>https://github.com/ligershark/OpenFromPortal</MoreInfo>
     <License>Resources\LICENSE</License>
     <Icon>Resources\logo.png</Icon>
     <PreviewImage>Resources\preview.png</PreviewImage>
