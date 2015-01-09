@@ -1,6 +1,10 @@
-## Open from Azure Websites
+# Open from Azure Websites
+## A Visual Studio extension
 
 __Open any web application hosted on Azure Websites directly in Visual Studio.__
+
+[Download the extension](https://visualstudiogallery.msdn.microsoft.com/60d414b1-4ead-4fde-9359-588aa126cd6c)
+from the VS Gallery.
 
 All you need is your Azure Webistes publish settings file. You can get the file in two ways:
 
