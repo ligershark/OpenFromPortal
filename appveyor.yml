@@ -27,4 +27,4 @@ build_script:
   - ps: .\appveyor.ps1
 
 artifacts:
-  - path: 'OpenFromPortal\bin\Release\**\*'
+  - path: 'src\vsix\bin\Release\**\*'
