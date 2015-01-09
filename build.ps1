@@ -22,6 +22,14 @@ function EnsurePsbuildInstalled{
     process{
         if(!(Get-Module -listAvailable 'psbuild')){
             (new-object Net.WebClient).DownloadString("https://raw.github.com/ligershark/psbuild/master/src/GetPSBuild.ps1") | iex
+
+            if(!(Get-Module -listAvailable 'psbuild')){
+                throw 'unable to download and load psbuild'
+            }
+        }
+
+        if(!(Get-Module psbuild)){
+            Import-Module psbuild -Global
         }
 
         if(!(Get-Module psbuild)){
@@ -38,7 +46,7 @@ try{
 
     $script:slnFilePath = ('{0}src\OpenFromPortal.sln' -f $scriptDir)
 
-    Invoke-MSBuild .\src\OpenFromPortal.sln -configuration $configuration -visualStudioVersion 12.0
+    Invoke-MSBuild .\src\OpenFromPortal.sln -configuration $configuration -visualStudioVersion 12.0 -properties @{'DeployExtension'='false'}
 }
 catch{
     throw ("Error:`n{0}" -f ($_.Exception.Message))

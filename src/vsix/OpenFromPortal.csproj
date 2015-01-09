@@ -169,7 +169,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <BuildDependsOn Condition=" '$(AppVeyor)'=='true' and '$(APPVEYOR_BUILD_NUMBER)' != ''">
+    <BuildDependsOn Condition=" '$(UpdateVersion)'=='true' and '$(APPVEYOR_BUILD_NUMBER)' != ''">
       UpdateVsixManifestWithAppveyorVersion;
       $(BuildDependsOn)
     </BuildDependsOn>
