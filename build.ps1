@@ -5,7 +5,10 @@ param(
     [switch]$build,
     
     [Parameter(ParameterSetName='build',Position=1)]
-    $configuration = 'Release'
+    [string]$configuration = 'Release',
+
+    [Parameter(ParameterSetName='build',Position=2)]
+    [bool]$increaseVsixVersion = $false
 )
 
 function Get-ScriptDirectory
@@ -46,7 +49,10 @@ try{
 
     $script:slnFilePath = ('{0}src\OpenFromPortal.sln' -f $scriptDir)
 
-    Invoke-MSBuild .\src\OpenFromPortal.sln -configuration $configuration -visualStudioVersion 12.0 -properties @{'DeployExtension'='false'}
+    Invoke-MSBuild .\src\OpenFromPortal.sln -configuration $configuration -visualStudioVersion 12.0 -properties @{
+            'DeployExtension'='false'
+            'UpdateVersion' = "$increaseVsixVersion"
+        }
 }
 catch{
     throw ("Error:`n{0}" -f ($_.Exception.Message))

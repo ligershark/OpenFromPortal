@@ -13,6 +13,4 @@ elseif($commitMsg.ToLowerInvariant().Contains('release') -eq $true){
     'Skipping version update because the commit message contains "release", preserving existing vsix manifest version' | Write-Host
 }
 
-$env:UpdateVersion = $updateVersion
-
-.\build.ps1
+.\build.ps1 -configuration Release -increaseVsixVersion $updateVersion
