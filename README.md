@@ -23,7 +23,7 @@ All you need is your Azure Webistes publish settings file. You can get the file 
 
 A new button appears in the `File` top menu as shown below.
 
-![hello text](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/FileOpen.png)
+![File Open](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/FileOpen.png)
 
 Now all you have to do is click on it to select your .PublishSettings file.
 
@@ -31,7 +31,11 @@ Now all you have to do is click on it to select your .PublishSettings file.
 
 You'll now be presented by the File Preview dialog that lets which files to open.
 
-![hello text](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/PreviewDialog.png)
+![Download files preview](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/PreviewDialog.png)
+
+After downloading the files, the project opens in Visual Studio.
+
+![Solution Explorer](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/SolutionExplorer.png)
 
 #### Step 4: Share this with your friends
 
