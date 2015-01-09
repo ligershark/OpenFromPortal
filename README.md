@@ -6,7 +6,7 @@
 __Open any web application hosted on Azure Websites directly in Visual Studio.__
 
 [Download the extension](https://visualstudiogallery.msdn.microsoft.com/60d414b1-4ead-4fde-9359-588aa126cd6c)
-from the VS Gallery or get the or get the
+from the VS Gallery or get the
 [nightly build](https://ci.appveyor.com/project/sayedihashimi/openfromportal/build/artifacts)
 
 All you need is your Azure Webistes publish settings file. You can get the file in two ways:
