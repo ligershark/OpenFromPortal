@@ -178,4 +178,32 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
+  <PropertyGroup>
+    <BuildDependsOn Condition=" '$(AppVeyor)'=='true' and '$(APPVEYOR_BUILD_NUMBER)' != ''">
+      UpdateVsixManifestWithAppveyorVersion;
+      $(BuildDependsOn)
+    </BuildDependsOn>
+    <VsixManifestFile Condition=" '$(VsixManifestFile)'=='' ">source.extension.vsixmanifest</VsixManifestFile>
+  </PropertyGroup>
+  <Target Name="UpdateVsixManifestWithAppveyorVersion">
+    <!--  -->
+    <XmlPeek Namespaces="&lt;Namespace Prefix='dft' Uri='http://schemas.microsoft.com/developer/vsx-schema/2011'/&gt;"
+             XmlInputPath="$(VsixManifestFile)"
+             Query="dft:PackageManifest/dft:Metadata/dft:Identity/@Version">
+      <Output TaskParameter="Result" PropertyName="ls-CurrentVersion"/>
+    </XmlPeek>
+
+    <Message Text="CurrentVersion: [$(ls-CurrentVersion)]" Importance="high" />
+    <PropertyGroup>
+      <ls-NewVersion>$(ls-CurrentVersion).$(APPVEYOR_BUILD_NUMBER)</ls-NewVersion>
+    </PropertyGroup>
+    <Message Text="Updating the source manifest [$(VsixManifestFile)] version number from [$(ls-CurrentVersion)] [$(ls-NewVersion)]" Importance="high"/>
+
+    <XmlPoke Namespaces="&lt;Namespace Prefix='dft' Uri='http://schemas.microsoft.com/developer/vsx-schema/2011'/&gt;"
+             XmlInputPath="$(VsixManifestFile)"
+             Query="dft:PackageManifest/dft:Metadata/dft:Identity/@Version"
+             Value="$(ls-NewVersion)" />
+  </Target>
+
 </Project>
