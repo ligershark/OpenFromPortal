@@ -40,3 +40,5 @@ After downloading the files, the project opens in Visual Studio.
 #### Step 4: Share this with your friends
 
 Now that you found this awesome extension, you should [Tweet about it](https://twitter.com/share?url=https%3a%2f%2fvisualstudiogallery.msdn.microsoft.com%2f60d414b1-4ead-4fde-9359-588aa126cd6c&text=Easiest+way+to+open+your+Azure+Websites+directly+in+Visual+Studio.+%23LigerShark).
+
+*Created by Bill Hiebert, Sayed Ibrahim Hashimi and Mads Kristensen*
