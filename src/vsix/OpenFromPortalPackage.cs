@@ -25,7 +25,7 @@ namespace Company.OpenFromPortal
         protected override void Initialize()
         {
             base.Initialize();
-            _dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2;
+            _dte = GetService(typeof(DTE)) as DTE2;
 
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (null != mcs)
@@ -76,20 +76,19 @@ namespace Company.OpenFromPortal
             string folder = Path.GetDirectoryName(assembly);
             string file = Path.Combine(folder, "Resources\\project.csproj");
 
-            _dte.ExecuteCommand("File.OpenProject", file);
+            _dte.ExecuteCommand("File.OpenProject", "\"" + file + "\"");
             _dte.Solution.Close();
         }
 
         private static string GetPublishSettings()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Publish Settings (*.PublishSettings)|*.PublishSettings";
-            dialog.DefaultExt = ".PublishSettings";
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Publish Settings (*.PublishSettings)|*.PublishSettings";
+                dialog.DefaultExt = ".PublishSettings";
 
-            if (dialog.ShowDialog() != DialogResult.OK)
-                return null;
-
-            return dialog.FileName;
+                return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : null;
+            }
         }
     }
 }
