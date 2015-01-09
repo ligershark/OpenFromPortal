@@ -20,7 +20,7 @@ namespace Company.OpenFromPortal
     [Guid(GuidList.guidOpenFromPortalPkgString)]
     public sealed class OpenFromPortalPackage : ExtensionPointPackage
     {
-        public const string Version = "1.0.3";
+        public const string Version = "1.1";
         private static DTE2 _dte;
 
         protected override void Initialize()
