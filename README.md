@@ -1,5 +1,5 @@
 # Open from Azure Websites
-## A Visual Studio extension
+### A Visual Studio extension
 
 __Open any web application hosted on Azure Websites directly in Visual Studio.__
 
