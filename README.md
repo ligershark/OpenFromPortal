@@ -12,3 +12,7 @@ A new button appears in the `File` top menu as shown below.
 ![hello text](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/FileOpen.png)
 
 Now all you have to do is click on it to select your .PublishSettings file.
+
+You'll now be presented by the File Preview dialog that lets which files to open.
+
+![hello text](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/PreviewDialog.png)
