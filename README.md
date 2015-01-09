@@ -32,3 +32,7 @@ Now all you have to do is click on it to select your .PublishSettings file.
 You'll now be presented by the File Preview dialog that lets which files to open.
 
 ![hello text](https://raw.githubusercontent.com/ligershark/OpenFromPortal/master/img/PreviewDialog.png)
+
+#### Step 4: Share this with your friends
+
+Now that you found this awesome extension, you should [Tweet about it](https://twitter.com/share?url=https%3a%2f%2fvisualstudiogallery.msdn.microsoft.com%2f60d414b1-4ead-4fde-9359-588aa126cd6c&text=Easiest+way+to+open+your+Azure+Websites+directly+in+Visual+Studio.+%23LigerShark).
