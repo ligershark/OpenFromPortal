@@ -9,9 +9,8 @@
       <Button guid="guidOpenFromPortalCmdSet" id="cmdidMyCommand" priority="0x0200" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_FILE_OPENP_CASCADE" />
         <Icon guid="guidImages" id="bmpPic1" />
-        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Web Site from Azure Websites...</ButtonText>
+          <ButtonText>Open from Azure Websites...</ButtonText>
         </Strings>
       </Button>
     </Buttons>
