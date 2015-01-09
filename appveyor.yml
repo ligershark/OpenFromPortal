@@ -27,4 +27,5 @@ build_script:
   - ps: .\appveyor.ps1
 
 artifacts:
-  - path: 'src\vsix\bin\Release\**\*'
+  - path: 'src\vsix\bin\Release\OpenFromPortal.vsix'
+    name: Nightly
