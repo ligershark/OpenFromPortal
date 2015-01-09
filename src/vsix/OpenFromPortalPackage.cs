@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
-using Microsoft.Win32;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.Shell;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using EnvDTE;
 using EnvDTE80;
-using System.IO;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Company.OpenFromPortal
 {
@@ -34,9 +30,9 @@ namespace Company.OpenFromPortal
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (null != mcs)
             {
-                CommandID menuCommandID = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
-                MenuCommand menuItem = new MenuCommand(ButtonClicked, menuCommandID);
-                mcs.AddCommand(menuItem);
+                CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
+                MenuCommand button = new MenuCommand(ButtonClicked, cmd);
+                mcs.AddCommand(button);
             }
         }
 
@@ -47,7 +43,6 @@ namespace Company.OpenFromPortal
             if (string.IsNullOrEmpty(fileName))
                 return;
 
-            //CreateEmptySolution();
             OpenProject(fileName);
         }
 
@@ -55,31 +50,23 @@ namespace Company.OpenFromPortal
         {
             Command cmd = _dte.Commands.Item("File.OpenfromPortal");
 
-            if (cmd.IsAvailable)
+            if (!cmd.IsAvailable)
             {
-                _dte.ExecuteCommand("File.OpenfromPortal", fileName);
+                LoadWebTools();
             }
+
+            _dte.ExecuteCommand("File.OpenfromPortal", fileName);
         }
 
-        private void CreateEmptySolution()
+        // The command File.OpenFromPortal is not available unless the WebTools have loaded.
+        private void LoadWebTools()
         {
-            if (_dte.Solution.IsOpen)
-            {
-                _dte.Solution.Close(true);
-            }
+            string assembly = Assembly.GetExecutingAssembly().Location;
+            string folder = Path.GetDirectoryName(assembly);
+            string file = Path.Combine(folder, "Resources\\project.csproj");
 
-            string solutionName = "MyAzureWebsite.sln";
-            string rootFolder = (string)UserRegistryRoot.GetValue("VisualStudioProjectsLocation");
-            string projectFolder = Path.Combine(rootFolder, "AzureWebSite-" + DateTime.UtcNow.Ticks);
-            string solutionFile = Path.Combine(projectFolder, solutionName);
-
-            if (!Directory.Exists(projectFolder))
-            {
-                Directory.CreateDirectory(projectFolder);
-            }
-
-            _dte.Solution.Create(projectFolder, solutionName);
-            _dte.Solution.SaveAs(solutionFile);
+            _dte.ExecuteCommand("File.OpenProject", file);
+            _dte.Solution.Close();
         }
 
         private static string GetPublishSettings()

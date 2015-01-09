@@ -150,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Package.ico" />
+    <Content Include="Resources\project.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
