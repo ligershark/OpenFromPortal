@@ -76,7 +76,7 @@ namespace Company.OpenFromPortal
             string folder = Path.GetDirectoryName(assembly);
             string file = Path.Combine(folder, "Resources\\project.csproj");
 
-            _dte.ExecuteCommand("File.OpenProject", file);
+            _dte.ExecuteCommand("File.OpenProject", "\"" + file + "\"");
             _dte.Solution.Close();
         }
 
