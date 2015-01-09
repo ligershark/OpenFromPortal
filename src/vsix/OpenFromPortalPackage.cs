@@ -31,8 +31,19 @@ namespace Company.OpenFromPortal
             if (null != mcs)
             {
                 CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
-                MenuCommand button = new MenuCommand(ButtonClicked, cmd);
+                OleMenuCommand button = new OleMenuCommand(ButtonClicked, cmd);
+                button.BeforeQueryStatus += button_BeforeQueryStatus;
                 mcs.AddCommand(button);
+            }
+        }
+
+        void button_BeforeQueryStatus(object sender, EventArgs e)
+        {
+            OleMenuCommand button = (OleMenuCommand)sender;
+
+            if (_dte.Version == "14.0")
+            {
+                button.Text = "Open from Azure Websites...";
             }
         }
 
