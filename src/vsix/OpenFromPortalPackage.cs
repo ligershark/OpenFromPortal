@@ -19,12 +19,10 @@ namespace LigerShark.OpenFromPortal
     public sealed class OpenFromPortalPackage : ExtensionPointPackage
     {
         public const string Version = "1.2";
-        private DTE2 _dte;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _dte = GetService(typeof(DTE)) as DTE2;
 
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
@@ -44,13 +42,14 @@ namespace LigerShark.OpenFromPortal
 
         private void OpenProject(string fileName)
         {
-            Command cmd = _dte.Commands.Item("File.OpenfromPortal");
+            DTE2 dte = GetService(typeof(DTE)) as DTE2;
+            Command cmd = dte.Commands.Item("File.OpenfromPortal");
 
             EnsurePublishPackage();
 
             if (cmd.IsAvailable)
             {
-                _dte.ExecuteCommand("File.OpenfromPortal", fileName);
+                dte.ExecuteCommand("File.OpenfromPortal", fileName);
             }
             else
             {
