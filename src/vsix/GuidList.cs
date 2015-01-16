@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Company.OpenFromPortal
+namespace LigerShark.OpenFromPortal
 {
     static class GuidList
     {

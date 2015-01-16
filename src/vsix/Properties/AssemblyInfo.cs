@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-using Company.OpenFromPortal;
+using LigerShark.OpenFromPortal;
 
 [assembly: AssemblyTitle("Open From Azure Websites")]
 [assembly: AssemblyDescription("Open any Azure hosted web application as a Website Project.")]

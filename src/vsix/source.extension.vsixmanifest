@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="4156516b-f6e6-40f2-aecb-ff99cded5f8a" Version="1.1" Language="en-US" Publisher="LigerShark" />
+    <Identity Id="4156516b-f6e6-40f2-aecb-ff99cded5f8a" Version="1.2" Language="en-US" Publisher="LigerShark" />
     <DisplayName>Open From Azure Websites</DisplayName>
     <Description>Open any Azure hosted web application as a Website Project.</Description>
     <MoreInfo>https://github.com/ligershark/OpenFromPortal</MoreInfo>

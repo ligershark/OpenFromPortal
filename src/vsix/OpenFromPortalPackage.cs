@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using EnvDTE;
@@ -9,7 +7,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Company.OpenFromPortal
+namespace LigerShark.OpenFromPortal
 {
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
@@ -20,8 +18,8 @@ namespace Company.OpenFromPortal
     [Guid(GuidList.guidOpenFromPortalPkgString)]
     public sealed class OpenFromPortalPackage : ExtensionPointPackage
     {
-        public const string Version = "1.1";
-        private static DTE2 _dte;
+        public const string Version = "1.2";
+        private DTE2 _dte;
 
         protected override void Initialize()
         {
@@ -29,45 +27,44 @@ namespace Company.OpenFromPortal
             _dte = GetService(typeof(DTE)) as DTE2;
 
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            if (null != mcs)
-            {
-                CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
-                OleMenuCommand button = new OleMenuCommand(ButtonClicked, cmd);
-                mcs.AddCommand(button);
-            }
+            CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
+            OleMenuCommand button = new OleMenuCommand(ButtonClicked, cmd);
+            mcs.AddCommand(button);
         }
 
         private void ButtonClicked(object sender, EventArgs e)
         {
             string fileName = GetPublishSettings();
 
-            if (string.IsNullOrEmpty(fileName))
-                return;
-
-            OpenProject(fileName);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                OpenProject(fileName);
+            }
         }
 
         private void OpenProject(string fileName)
         {
             Command cmd = _dte.Commands.Item("File.OpenfromPortal");
 
-            if (!cmd.IsAvailable)
-            {
-                LoadWebTools();
-            }
+            EnsurePublishPackage();
 
-            _dte.ExecuteCommand("File.OpenfromPortal", fileName);
+            if (cmd.IsAvailable)
+            {
+                _dte.ExecuteCommand("File.OpenfromPortal", fileName);
+            }
+            else
+            {
+                MessageBox.Show("Web Development tools is not installed. Modify the Visual Studio installation to include it.", "Visual Studio", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
         }
 
-        // The command File.OpenFromPortal is not available unless the WebTools have loaded.
-        private void LoadWebTools()
+        // The command File.OpenFromPortal is not available unless the publishing packgage have loaded.
+        private void EnsurePublishPackage()
         {
-            string assembly = Assembly.GetExecutingAssembly().Location;
-            string folder = Path.GetDirectoryName(assembly);
-            string file = Path.Combine(folder, "Resources\\project.csproj");
-
-            _dte.ExecuteCommand("File.OpenProject", "\"" + file + "\"");
-            _dte.Solution.Close();
+            IVsShell vsShell = GetService(typeof(SVsShell)) as IVsShell;
+            Guid guidPublishPkg = new Guid("{1ad387fc-b1e8-4023-91fe-f22260b661db}");
+            IVsPackage publishPkg;
+            vsShell.LoadPackage(ref guidPublishPkg, out publishPkg);
         }
 
         private static string GetPublishSettings()
