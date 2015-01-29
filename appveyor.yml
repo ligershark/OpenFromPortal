@@ -1,6 +1,5 @@
 version: 1.0.{build}
 
-
 install: 
   - ps: Start-FileDownload https://raw.githubusercontent.com/madskristensen/ExtensionScripts/master/AppVeyor/vsix.ps1
   - ps: Import-Module './vsix.ps1'
@@ -11,5 +10,5 @@ before_build:
 build_script:
   - msbuild src/OpenFromPortal.sln /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m
 
-after_build:
+after_test:
   - ps: Vsix-PushArtifacts -publishToGallery
