@@ -4,12 +4,12 @@ using System.Resources;
 using System.Runtime.InteropServices;
 using LigerShark.OpenFromPortal;
 
-[assembly: AssemblyTitle("Open From Azure Websites")]
-[assembly: AssemblyDescription("Open any Azure hosted web application as a Website Project.")]
+[assembly: AssemblyTitle(Vsix.Name)]
+[assembly: AssemblyDescription(Vsix.Description)]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LigerShark")]
-[assembly: AssemblyProduct("Open From Azure Websites")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany(Vsix.Author)]
+[assembly: AssemblyProduct(Vsix.Name)]
+[assembly: AssemblyCopyright(Vsix.Author)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
@@ -17,8 +17,8 @@ using LigerShark.OpenFromPortal;
 [assembly: NeutralResourcesLanguage("en-US")]
 
 
-[assembly: AssemblyVersion(OpenFromPortalPackage.Version)]
-[assembly: AssemblyFileVersion(OpenFromPortalPackage.Version)]
+[assembly: AssemblyVersion(Vsix.Version)]
+[assembly: AssemblyFileVersion(Vsix.Version)]
 
 
 

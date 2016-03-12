@@ -11,21 +11,19 @@ namespace LigerShark.OpenFromPortal
 {
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", Version, IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
-    [Guid(GuidList.guidOpenFromPortalPkgString)]
-    public sealed class OpenFromPortalPackage : ExtensionPointPackage
+    [Guid(PackageGuids.guidOpenFromPortalPkgString)]
+    public sealed class OpenFromPortalPackage : Package
     {
-        public const string Version = "1.2";
-
         protected override void Initialize()
         {
             base.Initialize();
 
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            CommandID cmd = new CommandID(GuidList.guidOpenFromPortalCmdSet, (int)PkgCmdIDList.cmdidMyCommand);
+            CommandID cmd = new CommandID(PackageGuids.guidOpenFromPortalCmdSet, PackageIds.cmdidMyCommand);
             OleMenuCommand button = new OleMenuCommand(ButtonClicked, cmd);
             mcs.AddCommand(button);
         }
