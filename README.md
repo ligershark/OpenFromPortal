@@ -14,7 +14,7 @@ or get the
 
 #### Step 1: Download Publish Profile
 
-All you need is your Azure Webistes publish settings file. You can get the file in two ways:
+All you need is your Azure Websites publish settings file. You can get the file in two ways:
 
 1. Download it from the Dashboard for the website on the Azure Portal online.
 2. Use Server Explorer to find the Azure | Websites node and right-click to download.
