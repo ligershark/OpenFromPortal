@@ -55,7 +55,7 @@ namespace LigerShark.OpenFromPortal
             }
         }
 
-        // The command File.OpenFromPortal is not available unless the publishing packgage have loaded.
+        // The command File.OpenFromPortal is not available unless the publishing package have loaded.
         private void EnsurePublishPackage()
         {
             IVsShell vsShell = GetService(typeof(SVsShell)) as IVsShell;
